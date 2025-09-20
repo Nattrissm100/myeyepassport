@@ -1,7 +1,5 @@
 
-# MyEyePassport (Refactor)
-
-This refactor keeps **identical UI and functionality** while splitting the monolithic HTML into assets, CSS, and JS for easier maintenance and Netlify deployment.
+# MyEyePassport 
 
 ## Structure
 ```
