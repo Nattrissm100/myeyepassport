@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyEyePassport</title>
+  <link rel="icon" href="assets/myeyepassport.svg" type="image/svg+xml">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body class="bg-purple-50 text-slate-800">
+
+  <!-- Splash -->
+  <div id="splash-screen">
+    <img src="assets/myeyepassport.svg" alt="MyEyePassport Icon" class="h-20 w-20 mb-4">
+    <h1 class="text-4xl font-extrabold tracking-tight">MyEyePassport</h1>
+    <p class="mt-2 opacity-80">Your family's digital red book for vision.</p>
+  </div>
+
+  <!-- App -->
+  <div id="app" class="max-w-md mx-auto bg-slate-100 shadow-2xl min-h-screen pb-20">
+    <!-- Landing Page -->
+    <div id="landing" class="page p-6">
+      <header class="text-center mb-8">
+        <div class="flex justify-center items-center gap-3">
+          <img src="assets/eye.svg" alt="MyEyePassport Icon" class="h-12 w-12">
+          <h1 class="text-4xl font-extrabold tracking-tight brand-gradient-text">MyEyePassport</h1>
+        </div>
+        <p class="text-slate-500 mt-2">Welcome! Here are some tools to help you understand your child's vision health.</p>
+      </header>
+
+      <div class="space-y-6">
+        <div class="bg-gradient-to-br from-purple-50 to-indigo-100 p-6 rounded-2xl shadow-sm card-hover" onclick="navigateTo('home')">
+          <h2 class="text-2xl font-bold text-purple-800">Myopia Risk Checker</h2>
+          <p class="text-slate-600 mt-2">Answer a few quick questions to understand the key lifestyle factors that contribute to healthy vision. No signup required.</p>
+        </div>
+        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl shadow-sm card-hover" onclick="navigateTo('education-hub')">
+          <h2 class="text-2xl font-bold text-blue-800">Education Hub & Games</h2>
+          <p class="text-slate-600 mt-2">Explore interactive tools, simulators, and guides to learn more about myopia in a fun and engaging way.</p>
+        </div>
+
+        <div class="border-t pt-6 text-center">
+          <h2 class="text-2xl font-bold brand-gradient-text">Your Digital Red Book</h2>
+          <p class="text-slate-600 mt-2 mb-4">Create a free account to securely save and track your child's eye exam results over time in your personal Myopia Passport.</p>
+          <div class="flex gap-4">
+            <button onclick="navigateTo('passport-login')" class="flex-1 w-full bg-slate-200 text-slate-700 font-semibold py-3 rounded-lg hover:bg-slate-300 transition">Log In</button>
+            <button onclick="navigateTo('passport-login')" class="flex-1 w-full brand-gradient-bg text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The rest of the pages are identical markup moved verbatim from the original index.html -->
+    <!-- Home (Risk Checker) Page -->
+    <div id="home" class="page p-6">
+      <header class="flex items-center mb-6 gap-2">
+        <button onclick="navigateTo('landing')" class="p-2 rounded-full hover:bg-slate-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="text-2xl font-bold brand-gradient-text">Myopia Risk Checker</h2>
+      </header>
+
+      <div id="questionnaire" class="space-y-6">
+        <div class="bg-slate-100 p-4 rounded-xl card-hover">
+          <label class="block text-md font-semibold text-slate-700 mb-3">1. Family History of Myopia</label>
+          <div id="family-history" data-value="nil" class="segmented-control flex w-full bg-slate-200 p-1 rounded-lg">
+            <div class="glider w-1/3"></div>
+            <button data-value="nil" class="flex-1 py-2 px-2 rounded-md text-sm font-medium active">Neither Parent</button>
+            <button data-value="one" class="flex-1 py-2 px-2 rounded-md text-sm font-medium">One Parent</button>
+            <button data-value="both" class="flex-1 py-2 px-2 rounded-md text-sm font-medium">Both Parents</button>
+          </div>
+        </div>
+        <div class="bg-slate-100 p-4 rounded-xl card-hover">
+          <label class="block text-md font-semibold text-slate-700 mb-3">2. Daily Near-Work</label>
+          <div id="near-work" data-value="less" class="segmented-control flex w-full bg-slate-200 p-1 rounded-lg">
+            <div class="glider w-1/2"></div>
+            <button data-value="less" class="flex-1 py-2 px-2 rounded-md text-sm font-medium active">Under 3 hours</button>
+            <button data-value="more" class="flex-1 py-2 px-2 rounded-md text-sm font-medium">3+ hours</button>
+          </div>
+        </div>
+        <div class="bg-slate-100 p-4 rounded-xl card-hover">
+          <label class="block text-md font-semibold text-slate-700 mb-3">3. Daily Outdoor Time</label>
+          <div id="outdoor-time" data-value="more" class="segmented-control flex w-full bg-slate-200 p-1 rounded-lg">
+            <div class="glider w-1/2"></div>
+            <button data-value="more" class="flex-1 py-2 px-2 rounded-md text-sm font-medium active">Over 90 mins</button>
+            <button data-value="less" class="flex-1 py-2 px-2 rounded-md text-sm font-medium">Under 90 mins</button>
+          </div>
+        </div>
+        <div class="bg-slate-100 p-4 rounded-xl card-hover">
+          <label class="block text-md font-semibold text-slate-700 mb-3">4. Last Eye Test</label>
+          <div id="eye-test" data-value="yes" class="segmented-control flex w-full bg-slate-200 p-1 rounded-lg">
+            <div class="glider w-1/2"></div>
+            <button data-value="yes" class="flex-1 py-2 px-2 rounded-md text-sm font-medium active">In the last year</button>
+            <button data-value="no" class="flex-1 py-2 px-2 rounded-md text-sm font-medium">Over 1 years ago</button>
+          </div>
+        </div>
+        <button id="submit-answers" class="w-full brand-gradient-bg text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">Check My Child's Risk</button>
+      </div>
+    </div>
+
+    <!-- Myopia Passport (Records) Page -->
+    <div id="passport-records" class="page p-6">
+      <header class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-bold brand-gradient-text">Myopia Passport</h2>
+        <button id="logout-button" class="text-sm text-slate-500 hover:text-purple-600">Log Out</button>
+      </header>
+      <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-4 rounded-xl mb-6">
+        <p class="font-semibold text-purple-800">Child: Alex Smith</p>
+        <p class="text-sm text-purple-700">A timeline of lifestyle habits and eye exam results.</p>
+      </div>
+
+      <div id="outdoor-tracker" class="bg-white p-4 rounded-xl border border-slate-200 mb-6 card-hover">
+        <h3 class="font-bold text-slate-800 text-lg mb-3">Daily Outdoor Time Goal (90 mins)</h3>
+        <div class="text-center mb-3">
+          <span id="outdoor-time-display" class="text-4xl font-bold brand-gradient-text font-mono">0m 0s</span>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-4 mb-4 overflow-hidden">
+          <div id="outdoor-progress-bar" class="bg-green-500 h-4 rounded-full transition-all duration-500" style="width: 0%;"></div>
+        </div>
+        <button id="outdoor-timer-button" class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 transition">Start Timer</button>
+      </div>
+
+      <div class="bg-green-50 p-4 rounded-xl border border-green-200 mb-6 card-hover">
+        <h3 class="font-bold text-green-800 text-lg mb-2">Explore Outdoors</h3>
+        <p class="text-sm text-green-700 mb-3">Getting outside is key. Find a new place to play!</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=playground+near+me" target="_blank" class="w-full block text-center bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-600 transition">
+          Find a Nearby Playground
+        </a>
+      </div>
+
+      <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-200 mb-6">
+        <details>
+          <summary class="font-bold text-indigo-800 text-lg cursor-pointer flex justify-between items-center">
+            Learn About Myopia Treatment
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform transform details-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </summary>
+          <div class="details-content mt-3 space-y-4 text-sm text-indigo-900">
+            <p>If your child is myopic, there are several options available to help slow down its progression. These should be discussed with your optometrist to see what's most suitable.</p>
+            <div>
+              <h4 class="font-semibold">Specialty Contact Lenses</h4>
+              <p>Daily disposable soft contact lenses are designed with special zones to control how light focuses in the eye, which can help reduce the signal for the eye to grow longer.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold">Orthokeratology (Ortho-K)</h4>
+              <p>These are rigid gas-permeable contact lenses worn overnight to gently reshape the cornea. The lenses are removed in the morning, providing clear vision during the day without glasses or contacts.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold">Atropine Eye Drops</h4>
+              <p>Low-dose atropine drops are used once a day to relax the eye's focusing mechanism. This has been shown to be effective in slowing down myopia progression, though glasses will still be needed for clear vision.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold">Spectacle Lenses for Myopia Management</h4>
+              <p>These are advanced spectacle lenses that look like regular glasses but use special technology (like D.I.M.S. or H.A.L.T.) to manage how light is focused in the peripheral vision, helping to slow eye growth.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <h3 class="text-2xl font-bold text-slate-800 mb-3">Exam Records</h3>
+      <div id="records-list" class="space-y-4"></div>
+      <button onclick="navigateTo('add-record')" class="mt-6 w-full brand-gradient-bg text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">Add New Exam Record</button>
+    </div>
+
+    <!-- Myopia Passport (Login) Page -->
+    <div id="passport-login" class="page p-6">
+      <header class="text-center mb-8">
+        <h2 class="text-3xl font-bold brand-gradient-text">Myopia Passport</h2>
+        <p class="text-slate-500 mt-2">Log in to track your child's vision health.</p>
+      </header>
+      <div class="space-y-4">
+        <input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg border-slate-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
+        <input type="password" placeholder="Password" class="w-full p-3 rounded-lg border-slate-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
+        <button id="login-button" class="w-full brand-gradient-bg text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5">Log In</button>
+        <button class="w-full bg-slate-200 text-slate-700 font-semibold py-3 rounded-lg hover:bg-slate-300 transition">Register</button>
+      </div>
+    </div>
+
+    <!-- Add New Record Page -->
+    <div id="add-record" class="page p-6">
+      <header class="flex items-center mb-6 gap-2">
+        <button onclick="navigateTo('passport-records')" class="p-2 rounded-full hover:bg-slate-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="text-2xl font-bold brand-gradient-text">Add New Record</h2>
+      </header>
+      <div class="space-y-4">
+        <input type="date" id="record-date" class="w-full p-3 rounded-lg border-slate-300 shadow-sm focus:border-purple-500 focus:ring-purple-500" value="2025-09-20">
+        <input type="text" id="record-optometrist" placeholder="Optometrist Name" class="w-full p-3 rounded-lg border-slate-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="font-semibold text-slate-600">Right Eye (OD)</label>
+            <input type="number" step="0.25" id="record-od-sphere" placeholder="Sphere (e.g., -1.25)" class="mt-1 w-full p-2 rounded-md border-slate-300 focus:border-purple-500 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="font-semibold text-slate-600">Left Eye (OS)</label>
+            <input type="number" step="0.25" id="record-os-sphere" placeholder="Sphere (e.g., -1.50)" class="mt-1 w-full p-2 rounded-md border-slate-300 focus:border-purple-500 focus:ring-purple-500">
+          </div>
+        </div>
+        <textarea id="record-notes" placeholder="Additional notes from the optometrist..." class="w-full p-3 rounded-lg border-slate-300 shadow-sm h-24 focus:border-purple-500 focus:ring-purple-500"></textarea>
+        <button id="save-record-button" class="w-full brand-gradient-bg text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition">Save Record</button>
+      </div>
+    </div>
+
+    <!-- Optometrist Finder Page -->
+    <div id="optometrist-finder" class="page p-6">
+      <header class="flex items-center mb-6 gap-2">
+        <button onclick="goBack()" class="p-2 rounded-full hover:bg-slate-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="text-3xl font-bold brand-gradient-text">Find an Optometrist</h2>
+      </header>
+
+      <div class="bg-purple-50 p-4 rounded-xl border border-purple-200 mb-6">
+        <h3 class="font-bold text-purple-800 text-lg mb-2">Why Regular Eye Tests Matter</h3>
+        <p class="text-sm text-purple-700">A child's vision can change quickly. Regular eye tests are crucial to not only check for glasses but also to monitor the health of the eyes and detect signs of myopia progression early. Early detection is key to effective management.</p>
+      </div>
+
+      <div class="relative mb-6">
+        <input type="text" id="postcode" placeholder="Enter your postcode..." class="w-full p-3 rounded-lg border-slate-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
+        <button id="search-optometrists" class="absolute right-0 top-0 mt-1.5 mr-1.5 brand-gradient-bg text-white font-semibold py-2 px-4 rounded-md hover:opacity-90 transition transform hover:scale-105">Search</button>
+      </div>
+      <div id="optometrist-list" class="space-y-4"></div>
+    </div>
+
+    <!-- Education Hub Page -->
+    <div id="education-hub" class="page p-6">
+      <header class="flex items-center mb-6">
+        <button onclick="navigateTo('landing')" class="p-2 rounded-full hover:bg-slate-100 transition -ml-2 mr-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="text-3xl font-bold brand-gradient-text">Education Hub</h2>
+      </header>
+      <div class="space-y-4">
+        <div class="bg-gradient-to-br from-blue-500 to-indigo-500 text-white p-6 rounded-xl shadow-lg cursor-pointer card-hover" onclick="navigateTo('close-tool')">
+          <h3 class="text-xl font-bold">Viewing Distance Game</h3>
+          <p class="opacity-90 mt-1">An interactive game to check viewing distance.</p>
+        </div>
+        <div class="bg-gradient-to-br from-purple-500 to-pink-500 text-white p-6 rounded-xl shadow-lg cursor-pointer card-hover" onclick="navigateTo('myopia-simulator')">
+          <h3 class="text-xl font-bold">What is Myopia?</h3>
+          <p class="opacity-90 mt-1">Simulate how vision changes with different levels of myopia.</p>
+        </div>
+        <div class="bg-gradient-to-br from-teal-500 to-cyan-500 text-white p-6 rounded-xl shadow-lg card-hover">
+          <h3 class="text-xl font-bold">Screen View Guidelines</h3>
+          <p class="opacity-90 mt-1 mb-3">Based on Scandinavian health recommendations.</p>
+          <ul class="space-y-2 text-left">
+            <li class="flex items-center"><span class="font-semibold bg-white/20 rounded-md px-2 py-0.5 mr-2 text-sm">0-2 yrs</span> No screen time</li>
+            <li class="flex items-center"><span class="font-semibold bg-white/20 rounded-md px-2 py-0.5 mr-2 text-sm">2-5 yrs</span> Max 1 hour/day</li>
+            <li class="flex items-center"><span class="font-semibold bg-white/20 rounded-md px-2 py-0.5 mr-2 text-sm">6+ yrs</span> Set limits & take breaks</li>
+          </ul>
+        </div>
+        <div class="bg-gradient-to-br from-green-500 to-emerald-500 text-white p-6 rounded-xl shadow-lg cursor-pointer card-hover" onclick="navigateTo('outdoor-guide')">
+          <h3 class="text-xl font-bold">Outdoor Activity Guide</h3>
+          <p class="opacity-90 mt-1">Fun games and ideas for healthy vision.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Viewing Distance Game -->
+    <div id="close-tool" class="page p-6">
+      <header class="flex items-center mb-6 gap-2">
+        <button onclick="navigateTo('education-hub')" class="p-2 rounded-full hover:bg-slate-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="text-2xl font-bold brand-gradient-text">Viewing Distance Game</h2>
+      </header>
+      <p class="mb-4 text-slate-600 bg-slate-100 p-3 rounded-lg">This game shows what 'close work' is. Ask your child to hold the phone and tell you what picture they see. The app will check if they are holding it at a healthy distance.</p>
+      <div id="video-container">
+        <video id="video" autoplay muted playsinline></video>
+        <div id="feedback-overlay">
+          <span id="distance-feedback">Initializing Camera...</span>
+        </div>
+      </div>
+      <div id="camera-permission" class="text-center mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg hidden">Please allow camera access.</div>
+      <button id="next-image-btn" class="mt-6 w-full brand-gradient-bg text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">Next Picture</button>
+    </div>
+
+    <!-- Myopia Simulator Page -->
+    <div id="myopia-simulator" class="page p-6">
+      <header class="flex items-center mb-4 gap-2">
+        <button onclick="navigateTo('education-hub')" class="p-2 rounded-full hover:bg-slate-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="text-2xl font-bold brand-gradient-text">Myopia Simulator</h2>
+      </header>
+      <p class="mb-4 text-slate-600 bg-slate-100 p-3 rounded-lg">Use the slider to experience how the world looks with different levels of nearsightedness (myopia). Point your camera at a distant object for the best effect.</p>
+      <div id="simulator-video-container">
+        <video id="simulator-video" autoplay muted playsinline class="w-full h-auto transition-all duration-300"></video>
+      </div>
+      <div id="simulator-camera-permission" class="text-center mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg hidden">Please allow camera access.</div>
+      <div class="bg-slate-100 p-4 rounded-xl mt-6">
+        <label for="blur-slider" class="block text-md font-semibold text-slate-700 mb-2">Myopia Level: <span id="diopter-display" class="font-bold text-purple-600">-0.00 D</span></label>
+        <input id="blur-slider" type="range" min="0" max="6" step="0.25" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600">
+      </div>
+    </div>
+
+    <!-- Outdoor Activity Guide Page -->
+    <div id="outdoor-guide" class="page p-6">
+      <header class="flex items-center mb-6 gap-2">
+        <button onclick="navigateTo('education-hub')" class="p-2 rounded-full hover:bg-slate-100 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h2 class="text-3xl font-bold text-green-600">Outdoor Activity Guide</h2>
+      </header>
+      <div class="space-y-6">
+        <div class="p-4 bg-green-50 rounded-xl border border-green-200 card-hover">
+          <h3 class="text-xl font-semibold text-green-800">Why Outdoors Matters</h3>
+          <p class="text-slate-600 mt-2">Natural daylight is crucial for healthy eye development in children. Aiming for at least 90 minutes of outdoor time a day can significantly reduce the risk of myopia progression.</p>
+        </div>
+        <div class="p-4 bg-yellow-50 rounded-xl border border-yellow-200 card-hover">
+          <h3 class="text-xl font-semibold text-yellow-800">Game: "I Spy" with a Twist!</h3>
+          <div class="mt-2 text-slate-600 space-y-2"><p><strong>Objective:</strong> Encourage kids to focus on distant objects.</p><p><strong>How to Play:</strong></p><ol class="list-decimal list-inside space-y-1"><li>Find an open outdoor space like a park or garden.</li><li>Player 1 starts by saying, "I spy with my little eye, something..." and then describes an object that is far away (e.g., "something green on that faraway hill").</li><li>Other players have to guess the object.</li><li>The person who guesses correctly gets to be the next "spy".</li></ol></div>
+        </div>
+        <div class="p-4 bg-sky-50 rounded-xl border border-sky-200 card-hover">
+          <h3 class="text-xl font-semibold text-sky-800">More Outdoor Ideas</h3>
+          <ul class="list-disc list-inside mt-2 text-slate-600 space-y-2"><li>Go on a nature scavenger hunt.</li><li>Fly a kite in an open field.</li><li>Play catch or frisbee.</li><li>Go for a bike ride as a family.</li><li>Visit a new playground you haven't been to before.</li></ul>
+        </div>
+        <div class="bg-green-50 p-4 rounded-xl border border-green-200 card-hover">
+          <h3 class="font-bold text-green-800 text-lg mb-2">Explore Outdoors</h3>
+          <p class="text-sm text-green-700 mb-3">Getting outside is key. Find a new place to play!</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=playground+near+me" target="_blank" class="w-full block text-center bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-600 transition">
+            Find a Nearby Playground
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendation Modal -->
+  <div id="recommendation-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden opacity-0 transition-opacity duration-300">
+    <div id="modal-content" class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm text-center transform transition-all duration-300 scale-95 opacity-0">
+      <p id="modal-recommendation-text" class="text-md text-slate-700"></p>
+      <button id="modal-find-optometrist" class="mt-6 w-full bg-green-500 text-white font-semibold py-3 px-6 rounded-lg shadow hover:bg-green-600 transition duration-300 transform hover:-translate-y-0.5" style="display: none;">Find an Optometrist</button>
+      <button id="modal-close-button" class="mt-4 w-full bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-lg hover:bg-slate-300 transition">Close</button>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div id="bottom-nav" class="bottom-nav hidden">
+    <div class="bg-white/80 backdrop-blur-sm border-t border-slate-200 shadow-t-lg flex justify-around rounded-t-2xl overflow-hidden">
+      <button data-page="home" class="nav-button flex-1 flex flex-col items-center justify-center p-2 text-slate-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span class="text-xs font-medium nav-text">Risk Check</span>
+      </button>
+      <button data-page="passport-login" class="nav-button flex-1 flex flex-col items-center justify-center p-2 text-slate-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 nav-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+        </svg>
+        <span class="text-xs font-medium nav-text">Passport</span>
+      </button>
+      <button data-page="education-hub" class="nav-button flex-1 flex flex-col items-center justify-center p-2 text-slate-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422A12.083 12.083 0 0118 20H6a12.083 12.083 0 01-.16-9.422L12 14z" />
+        </svg>
+        <span class="text-xs font-medium nav-text">Education</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- App JS -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
