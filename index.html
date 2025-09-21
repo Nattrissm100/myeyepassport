@@ -211,10 +211,7 @@
     <!-- Optometrist Finder Page -->
     <div id="optometrist-finder" class="page p-6">
       <header class="flex items-center mb-6 gap-2">
-        <button onclick="goBack()" class="p-2 rounded-full hover:bg-slate-100 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
+      
         </button>
         <h2 class="text-3xl font-bold brand-gradient-text">Find an Optometrist</h2>
       </header>
@@ -268,24 +265,36 @@
 
     <!-- Viewing Distance Game -->
     <div id="close-tool" class="page p-6">
-      <header class="flex items-center mb-6 gap-2">
-        <button onclick="navigateTo('education-hub')" class="p-2 rounded-full hover:bg-slate-100 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+  <header class="flex items-center mb-6 gap-2">
+    <button onclick="navigateTo('education-hub')" class="p-2 rounded-full hover:bg-slate-100 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 L24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <h2 class="text-2xl font-bold brand-gradient-text">Viewing Distance Game</h2>
+  </header>
+
+  <!-- Informational Box Added Here -->
+  <div id="info-box" class="relative bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-lg mb-6 shadow">
+      <button onclick="document.getElementById('info-box').style.display='none'" class="absolute top-2 right-2 p-1 text-blue-700 hover:bg-blue-200 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
-        </button>
-        <h2 class="text-2xl font-bold brand-gradient-text">Viewing Distance Game</h2>
-      </header>
-      <p class="mb-4 text-slate-600 bg-slate-100 p-3 rounded-lg">This game shows what 'close work' is. Ask your child to hold the phone and tell you what picture they see. The app will check if they are holding it at a healthy distance.</p>
-      <div id="video-container">
-        <video id="video" autoplay muted playsinline></video>
-        <div id="feedback-overlay">
-          <span id="distance-feedback">Initializing Camera...</span>
-        </div>
-      </div>
-      <div id="camera-permission" class="text-center mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg hidden">Please allow camera access.</div>
-      <button id="next-image-btn" class="mt-6 w-full brand-gradient-bg text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">Next Picture</button>
+      </button>
+      <h3 class="font-bold mb-2">Why Does Viewing Distance Matter?</h3>
+      <p class="text-sm">When children hold devices or books too close for long periods, it puts extra strain on their eyes. This constant "close work" is a major risk factor for developing myopia (short-sightedness). Encouraging a healthy viewing distance helps their eyes relax and can significantly reduce the risk of myopia progressing.</p>
+  </div>
+
+  <p class="mb-4 text-slate-600 bg-slate-100 p-3 rounded-lg">This game shows what 'close work' is. Ask your child to hold the phone and tell you what picture they see. The app will check if they are holding it at a healthy distance.</p>
+  <div id="video-container">
+    <video id="video" autoplay muted playsinline></video>
+    <div id="feedback-overlay">
+      <span id="distance-feedback">Initializing Camera...</span>
     </div>
+  </div>
+  <div id="camera-permission" class="text-center mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg hidden">Please allow camera access.</div>
+  <button id="next-image-btn" class="mt-6 w-full brand-gradient-bg text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">Next Picture</button>
+</div>
 
     <!-- Myopia Simulator Page -->
     <div id="myopia-simulator" class="page p-6">
